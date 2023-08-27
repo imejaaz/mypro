@@ -1,0 +1,84 @@
+{% load static %}
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% block ext_css %}     {% endblock %}
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+       
+            {% block int_css %}     {% endblock %}
+    </style>
+
+  
+
+    <title>     {% block title %}   {% endblock %} </title>
+
+
+
+<nav class="navbar navbar-dark bg-dark">
+                <button  class="btn btn-outline-success"> <a href="/receipe">Home</a>           </button>
+              <button  class="btn btn-outline-success">  <a href="/receipe/forms/">Add New Receipe</a>    </button>
+
+    <form class="d-flex" action="/receipe/SearchReceipe/">
+      <input name="search_key" class="form-control me-2" type="search" placeholder="type receipe name here" aria-label="Search">
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+
+
+
+
+    {%if request.user.is_authenticated%}
+
+      <H3 style="color: azure;">Welcome {{request.user.first_name}}</H3>  <div style="display:inline; width:50px; height:50px; border: 2px solid azure; border-radius: 50%;"></div>
+
+          <button  class="btn btn-outline-success">  <a href="/receipe/logout">logout</a>      </button>
+
+
+    {% else %}
+    <button  class="btn btn-outline-success">  <a href="/receipe/login">login</a>      </button>
+
+    {% endif %}
+
+
+
+
+
+
+    {% block head %}    {% endblock %}
+
+</nav>
+
+
+  </head>
+  <body>
+
+    {% block body %}    {% endblock %}
+
+
+
+
+
+
+    <div class="card text-center">
+        <div class="card-header">
+          Featured
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Special Receipes</h5>
+          <p class="card-text">&copy; copyright 2023</p>
+          <a href="/receipe" class="btn btn-primary">Go to Home</a>
+        </div>
+        <div class="card-footer text-body-secondary">
+          2 days ago
+        </div>
+      </div>
+
+
+  </body>
+</html>

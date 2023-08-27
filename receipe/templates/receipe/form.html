@@ -1,0 +1,48 @@
+{% extends "receipe/basic.html" %}
+
+
+
+
+
+
+{% block ext_css %}    
+
+<link rel="stylesheet" href="/static/css/form.css">
+
+
+{% endblock %}
+
+<h1  class="control"  align="center" >Add Receipe Data</h1>
+
+
+{%block body%}
+
+<div class="formc">
+
+
+<form class="form" method="post" name="form" enctype="multipart/form-data" action="{% url 'fsub'  %}">
+
+    {% csrf_token %}
+
+    <div>
+        <label class="lbl">Receipe Name</label> <input  type="text"  name="receipeName"  placeholder="Enter your receipe name here">
+    </div>
+
+    <div>
+        <label class="lbl">Receipe Drescribtion</label> <textarea name="receipeDisc" style="width: 600px; height: 100px"></textarea>
+    </div>
+
+    <div>
+        <label class="lbl">Recipe Image</label>     <input  name="receipeImg" type="file">
+    </div>
+    
+    <button class="btn btn-primary " type="submit">save receipe</button>
+
+</form>
+
+
+
+
+
+</div>
+{%endblock%}

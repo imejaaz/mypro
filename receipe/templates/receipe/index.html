@@ -1,0 +1,44 @@
+  {% extends "receipe/basic.html" %}
+
+
+
+
+  {% block body%}
+ 
+                <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Image</th>
+      <th scope="col">Delete</th>
+      <th scope="col">Update</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  {%for rec in r%}
+    <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      <td>{{rec.name}}</td>
+      <td>{{rec.desc}}</td>
+      <td ><img  style="width:100px;"  src="/media/{{rec.img}}"></td>
+      <td >
+      <a href="update/{{rec.id}}"><button class="btn btn-success">UPDATE</button></a>
+      </td>
+        <td>
+      <a href="delete/{{rec.id}}"><button class="btn btn-danger">DELETE</button></a>
+
+        </td>
+    </tr>
+
+
+  {%endfor%}
+
+
+  </tbody>
+</table>
+
+
+{% endblock %}
