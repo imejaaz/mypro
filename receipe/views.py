@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from receipe.models import receipes
@@ -5,7 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.db.models import Q
+from django.db.models import Q,Sum
 from receipe.models import *
 
 
@@ -104,15 +105,35 @@ def logout_page(request):
     return redirect('login')
 
 
+
+# student record list.....
 def get_student(request):
     so = Student.objects.all()
 
-    if request.method == 'POST':
-        searchkey=request.POST.get('search')
-        result=Student.objects.filter(studentName__icontains = searchkey)
+    if request.GET.get('search'):
+        searchkey=request.GET.get('search')
+        result=Student.objects.filter(
+            Q(studentName__icontains = searchkey) |
+            Q(department__department__icontains = searchkey) |
+            Q(studentAddress__icontains = searchkey) |
+            Q(studentAge__icontains = searchkey) |
+            Q(studentEmail__icontains = searchkey)
+
+        )
 
         dic = {'student': result}
-        return render(request, 'student.html', dic)
+        return render(request, 'studentList.html', dic)
 
-    dic={'student': so}
-    return render(request, 'student.html', dic)
+    paginator = Paginator(so, 10)
+    page_number = request.GET.get("page",1)
+    so = paginator.get_page(page_number)
+    dic = {'student': so}
+    return render(request, 'studentList.html', dic)
+
+
+
+def studentResult(request, sId):
+    querySet = Marks.objects.filter(student__studentId__sReg=sId)
+    print(querySet.values_list('marks', flat=True))  # Debugging line
+    total_Marks = querySet.aggregate(total_Marks=Sum('marks'))['total_Marks']
+    return render(request, 'studentResult.html', {'student': querySet, 'sum': total_Marks})

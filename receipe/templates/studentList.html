@@ -12,13 +12,10 @@
 
 
 
-
-
   <div class="row">
 
-    <form class="form controlo" method="POST" >
+    <form class="mb-5"  >
        {% csrf_token %}
-
 
     <div>
       <input class="" name="search" placeholder="search" type="search">
@@ -27,25 +24,31 @@
     <div>
       <button class="btn btn-primary">Search</button>
     </div>
-
-
     </form>
-
-
   </div>
 
 
 
+<!--starting paginaotn code here..........-->
 
+<div class="pagination">
+    <spa class="step-links">
+        {% if student.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ student.previous_page_number }}">previous</a>
+        {% endif %}
 
+        <span class="current">
+            Page {{ student.number }} of {{ student.paginator.num_pages }}.
+        </span>
 
+        {% if student.has_next %}
+            <a href="?page={{ student.next_page_number }}">next</a>
+            <a href="?page={{ student.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+</div>
 
-
-
-
-
-
-
+<!--end paginatoin code-->
 
 
 
@@ -66,17 +69,17 @@
   <tr class="table-primary">
 
     <td class="table-dark">{{forloop.counter}}</td>
-    <td class="table-warning">{{stu.studentId}}</td>
+    <td class="table-warning">  <a href="/receipe/studentResult/{{stu.studentId}}">{{stu.studentId}}</a> </td>
     <td class="table-success">{{stu.studentName}}</td>
-    <td class="table-success">{{stu.department}}/td>
+    <td class="table-success">{{stu.department}}</td>
     <td class="table-danger">{{stu.studentAge}}</td>
     <td class="table-info">{{stu.studentEmail}}</td>
     <td class="table-warning">{{stu.studentAddress}}</td>
 
   </tr>
 {%endfor%}
-
 </table>
+
 
 
 

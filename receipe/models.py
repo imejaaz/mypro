@@ -18,14 +18,6 @@ class receipes(models.Model):
 
 
 
-
-
-
-
-
-
-
-
 class StudentReg(models.Model):
         sReg = models.CharField(max_length=20)
 

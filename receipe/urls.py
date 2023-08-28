@@ -13,5 +13,7 @@ urlpatterns=[
     path('login/', views.login_page, name='login'),
     path('logout/', views.logout_page, name='logout'),
     path('register/', views.register_form, name='register'),
-    path('student/', views.get_student, name='student')
+    path('student/', views.get_student, name='student'),
+    path('studentResult/<str:sId>/', views.studentResult, name='sResult')
+    # path('studentResult/<str:sId>', views.studentResult, name='sResult')
 ]
