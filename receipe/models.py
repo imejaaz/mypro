@@ -1,7 +1,7 @@
-
-
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.contrib.auth.models import User
+User=get_user_model()
 
 
 class receipes(models.Model):
@@ -63,3 +63,12 @@ class Marks(models.Model):
 
         class Meta:
                 unique_together = ['student','subject']
+
+
+class studentReport(models.Model):
+        student = models.ForeignKey(Student, related_name='studentresult', on_delete=models.CASCADE)
+        Rank = models.IntegerField()
+        date_of_report = models.DateTimeField(
+         auto_now_add=True)
+        class Meta:
+                unique_together = ['student', 'Rank']

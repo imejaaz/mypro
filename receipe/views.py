@@ -8,7 +8,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q,Sum
 from receipe.models import *
-
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
 import time
 @login_required(login_url='login')
@@ -133,7 +134,14 @@ def get_student(request):
 
 
 def studentResult(request, sId):
+    from .seed import Report
     querySet = Marks.objects.filter(student__studentId__sReg=sId)
     print(querySet.values_list('marks', flat=True))  # Debugging line
     total_Marks = querySet.aggregate(total_Marks=Sum('marks'))['total_Marks']
-    return render(request, 'studentResult.html', {'student': querySet, 'sum': total_Marks})
+
+    student = Student.objects.filter(studentId__sReg=sId).first()
+    rank = studentReport.objects.filter(student=student).values('Rank').first()
+
+    return render(request, 'studentResult.html', {'student': querySet, 'sum': total_Marks, 'Rank': rank['Rank']})
+
+

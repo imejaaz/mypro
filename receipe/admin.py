@@ -6,6 +6,7 @@ admin.site.register(Department)
 admin.site.register(Student)
 admin.site.register(StudentReg)
 admin.site.register(Subject)
+admin.site.register(studentReport)
 
 
 class MarksAd(admin.ModelAdmin):

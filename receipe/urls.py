@@ -15,5 +15,4 @@ urlpatterns=[
     path('register/', views.register_form, name='register'),
     path('student/', views.get_student, name='student'),
     path('studentResult/<str:sId>/', views.studentResult, name='sResult')
-    # path('studentResult/<str:sId>', views.studentResult, name='sResult')
 ]

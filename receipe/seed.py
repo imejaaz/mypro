@@ -8,6 +8,19 @@ import random
 
 
 
+def Report():
+    current_rak = -1
+
+    ranks = Student.objects.annotate(total_marks=Sum('marks')).order_by('-total_marks')
+
+    i = 1
+    for rank in ranks:
+        studentReport.objects.create(
+            student=rank,
+            Rank=i
+        )
+        i = i + 1
+
 def marks_db():
     try:
         stO = Student.objects.all()
