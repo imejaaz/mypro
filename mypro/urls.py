@@ -10,5 +10,6 @@ urlpatterns = [
     path('', seen.index, name='project'),
     path('about/', seen.about),
     path('receipe/', include('receipe.urls')),
-    path('authentication/', include('authentication.urls'))
+    path('authentication/', include('authentication.urls')),
+    path('sendmail/', seen.send_emaal_attachment)
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

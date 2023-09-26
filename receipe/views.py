@@ -10,6 +10,7 @@ from django.db.models import Q,Sum
 from receipe.models import *
 from django.contrib.auth import get_user_model
 User = get_user_model()
+from mypro.seen import *
 
 import time
 @login_required(login_url='login')
@@ -65,33 +66,46 @@ def search(request):
 
 def register_form(request):
     if request.method =='POST':
-        username=request.POST.get('username')
+        email=request.POST.get('email')
         fname=request.POST.get('fname')
         lname=request.POST.get('lname')
         password=request.POST.get('password')
+        image=request.FILES['image']
 
 
-        if User.objects.filter(username=username).exists():
+        if User.objects.filter(email=email).exists():
             messages.error(request, 'User already exists.')
             return redirect('register')
+        
 
-        user=User.objects.create(first_name=fname, last_name=lname, username=username)
-        user.set_password(password)
-        user.save()
-        messages.success(request,'registered successfully')
-        return redirect('login')
+
+        name=fname+lname
+        a=registered_mail(name, email)
+        if a==0:
+            messages.error(request, 'Please provide a valid Email address!')
+            return redirect('register')
+
+
+        if a==1:
+            user=User.objects.create(first_name=fname, last_name=lname, email=email, image=image)
+            user.set_password(password)
+            user.save()
+            messages.success(request, 'User registered successfully!')
+            return redirect('login')  
+
+    
     return render(request, 'receipe/register.html')
 
 def login_page(request):
     if request.method == 'POST':
-        username = request.POST.get('username')
+        email = request.POST.get('email')
         password = request.POST.get('password')
 
-        if not User.objects.filter(username=username).exists():
+        if not User.objects.filter(email=email).exists():
             messages.error(request,'user not exist')
             return redirect('login')
 
-        user = authenticate(username=username, password=password)
+        user = authenticate(email=email, password=password)
 
         if user is None:
             messages.error(request, 'Invalid Password')
@@ -104,6 +118,12 @@ def login_page(request):
 def logout_page(request):
     logout(request)
     return redirect('login')
+
+
+def receipe_detail(request,rId):
+    obj=receipes.objects.get(id=rId)
+    dic={'rec':obj}
+    return render(request, 'receipe/detail_receipe.html', dic)
 
 
 

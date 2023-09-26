@@ -36,7 +36,7 @@
 
 <div class="container">
 
-<form method="post" class="form-control ">
+<form method="post" class="form-control "  enctype="multipart/form-data">
    {% csrf_token %}
 
 
@@ -59,8 +59,8 @@
 
 
   <div class="mb-5 ">
-    <label for="exampleInputEmail1" class="form-label">Username</label>
-    <input name="username" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <label for="exampleInputEmail1" class="form-label">Email</label>
+    <input name="email" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
   </div>
   <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label">First Name</label>
@@ -75,6 +75,11 @@
   <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label">Password</label>
     <input name="password" type="password" class="form-control" id="exampleInputPassword1">
+  </div>
+  
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Profile Image</label>
+    <input name="image" type="file" class="form-control" id="exampleInputPassword1">
   </div>
 
   <p>Alredy have an account <a href="/receipe/login">Login!</a> </p>

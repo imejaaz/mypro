@@ -1,0 +1,11 @@
+.dlink {
+    text-decoration: none;
+    color: rgb(34, 36, 34);
+    font-weight: bold;
+
+}
+
+.dss {
+    max-height: 2em; /* Display 2 lines of text initially */
+    overflow: hidden;
+}

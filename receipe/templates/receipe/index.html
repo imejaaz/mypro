@@ -1,7 +1,6 @@
   {% extends "receipe/basic.html" %}
 
-
-
+  {% block ext_css %}  <link rel="stylesheet" type="text/css" href="/static/css/index.css">  {% endblock %}
 
   {% block body%}
  
@@ -12,8 +11,9 @@
       <th scope="col">Name</th>
       <th scope="col">Description</th>
       <th scope="col">Image</th>
-      <th scope="col">Delete</th>
-      <th scope="col">Update</th>
+    
+      <!-- <th scope="col">Delete</th>
+      <th scope="col">Update</th> -->
     </tr>
   </thead>
   <tbody>
@@ -21,16 +21,18 @@
   {%for rec in r%}
     <tr>
       <th scope="row">{{forloop.counter}}</th>
-      <td>{{rec.name}}</td>
-      <td>{{rec.desc}}</td>
-      <td ><img  style="width:100px;"  src="/media/{{rec.img}}"></td>
+      <td >  <a href="detail_receipe/{{rec.id}}" class="dlink">   {{rec.name}}  </a> </td>
+     <td class="dss">     {{ rec.desc|slice:":250" }}   <a href="detail_receipe/{{rec.id}}">Read more</a> </td>
+     <!-- <td class="dss">     {{rec.desc}}   </td> -->
+
+      <td ><img  style="width:200px; height: 210px;"  src="/media/{{rec.img}}"></td>
       <td >
-      <a href="update/{{rec.id}}"><button class="btn btn-success">UPDATE</button></a>
+      <!-- <a href="update/{{rec.id}}"><button class="btn btn-success">UPDATE</button></a>
       </td>
         <td>
       <a href="delete/{{rec.id}}"><button class="btn btn-danger">DELETE</button></a>
 
-        </td>
+        </td> -->
     </tr>
 
 

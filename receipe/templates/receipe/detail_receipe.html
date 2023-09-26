@@ -1,0 +1,21 @@
+{% extends "receipe/basic.html" %}
+  {% block ext_css %}
+
+      <link rel="stylesheet" type="text/css" href="/static/css/detail_receipe.css">
+
+{% endblock %}
+
+
+
+{% block body %}
+
+
+
+<div class="detail" style="background-image: url('/media/{{rec.img}}');">
+<!-- <img src="/media/{{rec.img}}" alt="image not found" height="500px" width="500px" ali> -->
+<h1>{{rec.name}}</h1>
+<h3>{{rec.desc}}</h3>
+</div>
+
+
+{% endblock %}

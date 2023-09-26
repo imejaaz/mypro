@@ -33,9 +33,11 @@
 
 
 
+
     {%if request.user.is_authenticated%}
 
-      <H3 style="color: azure;">Welcome {{request.user.first_name}}</H3>  <div style="display:inline; width:50px; height:50px; border: 2px solid azure; border-radius: 50%;"></div>
+      <H3 style="color: azure;">Welcome {{request.user.first_name}}</H3>
+    <div style="display:inline; width:60px; height:60px; border: 2px solid azure; border-radius: 50%; background-color:grey;"> <img style="height: 55px; width: 55px; border-radius:50%;" src="{{request.user.image.url}}"> </div>
 
           <button  class="btn btn-outline-success">  <a href="/receipe/logout">logout</a>      </button>
 
@@ -75,9 +77,11 @@
           <a href="/receipe" class="btn btn-primary">Go to Home</a>
         </div>
         <div class="card-footer text-body-secondary">
-          2 days ago
+          Powered by: i@m_Ejaz
         </div>
       </div>
+
+      <a href="/receipe/student">Student Database</a>
 
 
   </body>

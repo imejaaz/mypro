@@ -1,0 +1,19 @@
+a {
+  text-decoration: none; 
+  color: inherit;
+}
+h1{
+  text-align: center;
+}
+
+.detail {
+
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  width: 1100px;
+  height: 1500px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 30px;
+  margin: 28px;
+}
