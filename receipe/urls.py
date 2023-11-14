@@ -4,7 +4,7 @@ from django.urls import include
 from . import views
 
 urlpatterns=[
-    path('', views.index, name='home'),
+    path('home', views.index, name='home'),
     path('forms/', views.forms, name='form'),
     path('formSubmit/', views.formSubmit, name='fsub'),
     path('delete/<id>', views.delete_receipe, name='delete'),
@@ -15,5 +15,6 @@ urlpatterns=[
     path('register/', views.register_form, name='register'),
     path('detail_receipe/<str:rId>/', views.receipe_detail, name='detail_receipe'),
     path('student/', views.get_student, name='student'),
-    path('studentResult/<str:sId>/', views.studentResult, name='sResult')
+    path('studentResult/<str:sId>/', views.studentResult, name='sResult'),
+    path('', views.test, name='celery')
 ]

@@ -72,7 +72,6 @@ def register_form(request):
         password=request.POST.get('password')
         image=request.FILES['image']
 
-
         if User.objects.filter(email=email).exists():
             messages.error(request, 'User already exists.')
             return redirect('register')
@@ -165,3 +164,7 @@ def studentResult(request, sId):
     return render(request, 'studentResult.html', {'student': querySet, 'sum': total_Marks, 'Rank': rank['Rank']})
 
 
+from receipe.tasks import *
+def test(request):
+    # text1.delay()
+    return HttpResponse("celery is okay")
